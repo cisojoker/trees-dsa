@@ -12,6 +12,32 @@ class treenode{
   }
 };
 
+treenode<int >* inputsahi(){
+    int rootdata;
+    cout<<"enter the data"<<endl;
+    cin>>rootdata;
+    treenode<int>* rootnode=new treenode<int>(rootdata);
+    queue<treenode<int>*> dalo;
+    dalo.push(rootnode);
+    while(!dalo.empty()){
+        treenode<int>* front=dalo.front();
+    cout<<"enter the number of childnodes of "<<front->data<<endl;
+    int l;
+    cin>>l;
+  
+    dalo.pop();
+    for (int i=0;i<l;i++){
+      int data;
+      cout<<"data"<<endl;
+      cin>>data;
+      treenode<int>* childnode=new treenode<int>(data);
+      front->children.push_back(childnode);
+      dalo.push(childnode);
+    }
+  }
+    return rootnode;
+}
+
 treenode<int>* inputree(){
     int data;
     cout<<"enter the data"<<endl;
@@ -45,7 +71,7 @@ int main(){
     // treenode<int> * ch2=new treenode<int>(78);
     // root->children.push_back(ch1);
     // root->children.push_back(ch2);
-    treenode<int>*op=inputree();
+    treenode<int>*op=inputsahi();
     printnode(op);
     return 0;
 }
