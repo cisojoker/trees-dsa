@@ -11,7 +11,21 @@ class treenode{
       this->data=data;
   }
 };
-
+void printlevelwise(treenode<int>* root){
+       queue<treenode<int>*> printmadi;
+       printmadi.push(root);
+       while(!printmadi.empty()){
+           treenode<int>*p=printmadi.front();
+           printmadi.pop();
+           cout<<p->data<<":";
+           for(int i=0;i < p->children.size();i++){
+               treenode<int>* temp=p->children[i];
+               cout<<temp->data<<",";
+               printmadi.push(temp);
+           }
+           cout<<endl;
+       }
+}
 treenode<int >* inputsahi(){
     int rootdata;
     cout<<"enter the data"<<endl;
@@ -73,5 +87,6 @@ int main(){
     // root->children.push_back(ch2);
     treenode<int>*op=inputsahi();
     printnode(op);
+    printlevelwise(op);
     return 0;
 }
