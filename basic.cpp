@@ -11,6 +11,15 @@ class treenode{
       this->data=data;
   }
 };
+int countnodes(treenode<int>* root){
+    if(root->children.size()==0)
+    return 1;
+    int ans;
+    for (int i=0;i<root->children.size();i++){
+       ans=countnodes(root->children[i])+ans;
+    }
+    return ans+1;
+}
 void printlevelwise(treenode<int>* root){
        queue<treenode<int>*> printmadi;
        printmadi.push(root);
@@ -88,5 +97,6 @@ int main(){
     treenode<int>*op=inputsahi();
     printnode(op);
     printlevelwise(op);
+    cout<<countnodes(op);
     return 0;
 }
