@@ -11,6 +11,38 @@ class treenode{
       this->data=data;
   }
 };
+int maxNode(treenode<int>* root){ if (root == nullptr) {
+        return 0;
+    }
+
+    treenode<int>* maxNode = root;
+    queue<treenode<int>*> q;
+    q.push(root);
+
+    while (!q.empty()) {
+        treenode<int>* currentNode = q.front();
+        q.pop();
+
+        if (currentNode->data > maxNode->data) {
+            maxNode = currentNode;
+        }
+
+        for (treenode<int>* child : currentNode->children) {
+            q.push(child);
+        }
+    }
+
+    return maxNode->data;
+}
+int heightnode(treenode<int>*root){
+    if(root==nullptr) return 0;
+    int height=0;
+    for(int i=0;i<root->children.size();i++){
+        int p=heightnode(root->children[i]);
+         height=max(height,p);
+    }
+    return height+1;
+}
 int countnodes(treenode<int>* root){
     if(root->children.size()==0)
     return 1;
@@ -108,5 +140,7 @@ int main(){
     printnode(op);
     printlevelwise(op);
     cout<<countnodes(op)<<endl;cout<<sunm(op);
+    cout<<endl<<maxNode(op)<<endl;
+    cout<<heightnode(op);
     return 0;
 }
