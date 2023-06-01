@@ -14,11 +14,19 @@ class treenode{
 int countnodes(treenode<int>* root){
     if(root->children.size()==0)
     return 1;
-    int ans;
+    int ans=0;
     for (int i=0;i<root->children.size();i++){
        ans=countnodes(root->children[i])+ans;
     }
     return ans+1;
+}
+int sunm(treenode<int>* root){
+    if (root->children.size()==0) return root->data;
+    int ans=root->data;
+    for(int i=0;i<root->children.size();i++){
+      ans=sunm(root->children[i])+ans;
+    }
+    return ans;
 }
 void printlevelwise(treenode<int>* root){
        queue<treenode<int>*> printmadi;
@@ -35,6 +43,8 @@ void printlevelwise(treenode<int>* root){
            cout<<endl;
        }
 }
+
+
 treenode<int >* inputsahi(){
     int rootdata;
     cout<<"enter the data"<<endl;
@@ -97,6 +107,6 @@ int main(){
     treenode<int>*op=inputsahi();
     printnode(op);
     printlevelwise(op);
-    cout<<countnodes(op);
+    cout<<countnodes(op)<<endl;cout<<sunm(op);
     return 0;
 }
