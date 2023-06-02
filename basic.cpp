@@ -11,6 +11,14 @@ class treenode{
       this->data=data;
   }
 };
+void printnodeatlevelk(treenode<int>* root,int k){
+    if (root==nullptr) return ;
+    if (k==0){ cout<<root->data<<" ";return ;}
+    for (int i=0;i<root->children.size();i++){
+         printnodeatlevelk(root->children[i],k-1); 
+    }
+    return;
+}
 int maxNode(treenode<int>* root){ if (root == nullptr) {
         return 0;
     }
@@ -142,5 +150,6 @@ int main(){
     cout<<countnodes(op)<<endl;cout<<sunm(op);
     cout<<endl<<maxNode(op)<<endl;
     cout<<heightnode(op);
+  cout<<"answer hai"<<endl;  printnodeatlevelk(op,2);
     return 0;
 }
