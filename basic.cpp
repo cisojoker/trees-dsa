@@ -11,6 +11,14 @@ class treenode{
       this->data=data;
   }
 };
+int countleafnodes(treenode<int>*root){
+    if (root==nullptr) return 0;
+    if(root->children.size()==0) return 1;int b =0 ;  
+    for(int i=0;i<root->children.size();i++){
+         b=countleafnodes(root->children[i])+b;
+    }
+    return b;
+}
 void printnodeatlevelk(treenode<int>* root,int k){
     if (root==nullptr) return ;
     if (k==0){ cout<<root->data<<" ";return ;}
@@ -151,5 +159,6 @@ int main(){
     cout<<endl<<maxNode(op)<<endl;
     cout<<heightnode(op);
   cout<<"answer hai"<<endl;  printnodeatlevelk(op,2);
+  cout<<"leafnode"<<countleafnodes(op);
     return 0;
 }
