@@ -146,6 +146,23 @@ void printnode(treenode<int>* root){
         printnode(root->children[i]);
     }
 }
+void preorder(treenode<int>* root){
+    if(root==nullptr) return ;
+    cout<<root->data;
+     for(int i=0;i<root->children.size();i++){
+        preorder(root->children[i]);
+    }
+    return ;
+}
+  void postorder(treenode<int>* root) {
+    if (root == nullptr)
+        return;
+
+    for (int i = 0; i < root->children.size(); i++) {
+        postorder(root->children[i]);
+    }
+    cout << root->data << " ";
+}
 int main(){
     // treenode<int> * root=new treenode<int>(10);
     // treenode<int> * ch1=new treenode<int>(23);
@@ -160,5 +177,7 @@ int main(){
     cout<<heightnode(op);
   cout<<"answer hai"<<endl;  printnodeatlevelk(op,2);
   cout<<"leafnode"<<countleafnodes(op);
+  preorder(op);cout<<endl;
+  postorder(op);
     return 0;
 }
