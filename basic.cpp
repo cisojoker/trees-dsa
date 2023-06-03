@@ -10,6 +10,11 @@ class treenode{
   treenode(T data){
       this->data=data;
   }
+  ~treenode(){
+      for(int i=0;i<children.size();i++){
+             delete children[i];
+      }
+  }
 };
 int countleafnodes(treenode<int>*root){
     if (root==nullptr) return 0;
@@ -179,5 +184,5 @@ int main(){
   cout<<"leafnode"<<countleafnodes(op);
   preorder(op);cout<<endl;
   postorder(op);
-    return 0;
+  delete op;    return 0;
 }
