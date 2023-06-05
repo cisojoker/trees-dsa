@@ -16,6 +16,36 @@ class treenode{
       }
   }
 };
+void nexlarger(treenode<int>* root,int val,int&ans){
+      if (root == nullptr)
+        return;
+
+    if (root->data > val) {
+        if (ans == 0 || root->data < ans) {
+            ans = root->data;
+        }
+    }
+ for(int i=0;i<root->children.size();i++){
+        nexlarger(root->children[i], val, ans);
+    }
+}
+int nextlarger(treenode<int>* root,int val){
+    int ans=0;
+    int temp;
+    nexlarger(root,val,ans);
+    return ans;
+}
+bool elefond(treenode<int>* root,int val){
+    if (root==nullptr) return false;
+    if(root->data==val) return true;
+    bool ans;
+    for(int i=0;i<root->children.size();i++){
+    ans=elefond(root->children[i],val);
+    if(ans)
+    return ans;
+    }
+ return false;   
+}
 int countleafnodes(treenode<int>*root){
     if (root==nullptr) return 0;
     if(root->children.size()==0) return 1;int b =0 ;  
@@ -182,7 +212,11 @@ int main(){
     cout<<heightnode(op);
   cout<<"answer hai"<<endl;  printnodeatlevelk(op,2);
   cout<<"leafnode"<<countleafnodes(op);
-  preorder(op);cout<<endl;
+ cout<<endl; preorder(op);cout<<endl;
   postorder(op);
-  delete op;    return 0;
+cout<<"next larger"<<nextlarger(op,10)<<endl;
+  if(elefond(op,12)) cout<<"ofund"<<endl;
+  else cout<<"no"<<endl;
+  delete op;  
+  return 0;
 }
