@@ -16,6 +16,36 @@ class treenode{
       }
   }
 };
+void snexlarger(treenode<int>* root, treenode<int>*& first, treenode<int>*& second) {
+    if (root == nullptr)
+        return;
+
+    if (first == nullptr)
+        first = root;
+    else if (root->data > first->data) {
+        second = first;
+        first = root;
+    } else if (second == nullptr)
+        second = root;
+    else if (first->data > root->data && (second == nullptr || second->data < root->data)) {
+        second = root;
+    }
+
+    for (int i = 0; i < root->children.size(); i++) {
+        snexlarger(root->children[i], first, second);
+    }
+}
+
+int snextlarger(treenode<int>* root) {
+    treenode<int>* first = nullptr;
+    treenode<int>* second = nullptr;
+    snexlarger(root, first, second);
+
+    if (second == nullptr)
+        return 0;
+    return second->data;
+}
+
 void nexlarger(treenode<int>* root,int val,int&ans){
       if (root == nullptr)
         return;
@@ -215,8 +245,9 @@ int main(){
  cout<<endl; preorder(op);cout<<endl;
   postorder(op);
 cout<<"next larger"<<nextlarger(op,10)<<endl;
+cout <<endl<<"second next larger"<<snextlarger(op);
   if(elefond(op,12)) cout<<"ofund"<<endl;
   else cout<<"no"<<endl;
   delete op;  
   return 0;
-}
+}/////////////////////////////////////////////////////////////////////////////////
