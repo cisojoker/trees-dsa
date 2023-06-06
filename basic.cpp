@@ -183,7 +183,26 @@ treenode<int >* inputsahi(){
   }
     return rootnode;
 }
-
+void replaceWithDepth(treenode<int>*root){
+    queue<treenode<int>*> m;
+    int count=1;
+    m.push(root);
+    m.push(nullptr);
+    cout<<endl<<"0"<<endl;
+    while(!(m.empty())){
+        if(m.front()==nullptr){
+            count++;
+            cout<<endl;
+        }
+        else{
+            for(int i=0;i<(m.front())->children.size();i++){
+                cout<<count;
+                 m.push((m.front())->children[i]);
+            }
+            m.push(nullptr);
+        }
+        m.pop(); }
+}
 treenode<int>* inputree(){
     int data;
     cout<<"enter the data"<<endl;
@@ -244,6 +263,8 @@ int main(){
   cout<<"leafnode"<<countleafnodes(op);
  cout<<endl; preorder(op);cout<<endl;
   postorder(op);
+  cout<<"replace with depth";
+  replaceWithDepth(op);
 cout<<"next larger"<<nextlarger(op,10)<<endl;
 cout <<endl<<"second next larger"<<snextlarger(op);
   if(elefond(op,12)) cout<<"ofund"<<endl;
